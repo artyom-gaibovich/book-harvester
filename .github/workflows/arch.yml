@@ -1,0 +1,24 @@
+name: go-arch-lint
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  arch:
+    name: go-arch-lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - name: Установка go-arch-lint
+        run: go install github.com/fe3dback/go-arch-lint@latest
+
+      - name: Проверка архитектурных границ
+        run: go-arch-lint check

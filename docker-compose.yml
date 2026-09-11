@@ -1,0 +1,10 @@
+services:
+  dumper:
+    build: .
+    image: iprbooks-dumper:latest
+    env_file:
+      - .env
+    volumes:
+      - ./downloads:/app/downloads
+    stdin_open: true
+    tty: true

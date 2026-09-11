@@ -1,0 +1,9 @@
+.git
+.idea
+.github
+bin
+downloads
+.env
+*.md
+openspec
+.claude

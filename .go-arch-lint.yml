@@ -1,0 +1,55 @@
+version: 2
+workdir: .
+
+allow:
+  depOnAnyVendor: true
+
+components:
+  domain:
+    in: "internal/domain"
+  config:
+    in: "internal/config"
+  downloader:
+    in: "internal/downloader"
+  decrypt:
+    in: "internal/decrypt"
+  storage:
+    in: "internal/storage"
+  app:
+    in: "internal/app"
+  cmd:
+    in: "cmd/**"
+
+deps:
+  domain:
+    anyVendorDeps: true
+
+  config:
+    anyVendorDeps: true
+
+  downloader:
+    mayDependOn:
+      - domain
+
+  decrypt:
+    mayDependOn:
+      - domain
+
+  storage:
+    mayDependOn:
+      - domain
+
+  app:
+    mayDependOn:
+      - domain
+      - decrypt
+      - storage
+
+  cmd:
+    mayDependOn:
+      - config
+      - domain
+      - downloader
+      - decrypt
+      - storage
+      - app
